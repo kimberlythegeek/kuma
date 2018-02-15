@@ -9,7 +9,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.action_chains import ActionChains
 
-from pypom import Page, Region
+from pypom import Region
+from pypom_axe.axe import AxePage as Page
 
 
 def wait_for_window(fn):
@@ -39,7 +40,8 @@ class BasePage(Page):
     def __init__(self, selenium, base_url, locale='en-US', **url_kwargs):
         super(BasePage, self).__init__(selenium, base_url, locale=locale, **url_kwargs)
 
-    def wait_for_page_to_load(self):
+    @property
+    def _page_loaded(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)
         el = self.find_element(By.TAG_NAME, 'html')
         self.wait.until(lambda s: el.get_attribute('data-ffo-opensans'))

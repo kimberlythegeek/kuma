@@ -1,0 +1,7 @@
+fxapom==1.10.1
+pytest==3.3.1
+pytest-selenium==1.11.3
+pytest-xdist==1.20.1
+selenium==3.8.0
+braceexpand
+pyquery
